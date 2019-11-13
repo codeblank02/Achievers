@@ -1,0 +1,24 @@
+import java.util.*;
+import java.util.Scanner;
+public class IndexArraySum {
+public static void main(String[] args) {
+	int n;
+	int sum=0;
+	Scanner sc=new Scanner(System.in);
+	n=sc.nextInt();
+	int[] arr=new int[n];
+	for(int i=0;i<n;i++) {
+		arr[i]=sc.nextInt();
+	}
+	int k=sc.nextInt();
+	for(int i=0;i<n;i++) {
+		for(int j=i;j<n;j++) {
+			sum=sum+arr[j];
+			if(sum==k) {
+				System.out.print("Starting Index: "+i+" Ending Index: "+j+"\n");
+			}
+		}
+		sum=0;
+	}
+}
+}
