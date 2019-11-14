@@ -1,0 +1,31 @@
+import java.util.*;
+import java.util.Scanner;
+public class ReverseOnlyAlphabets {
+	public static void main(String[] args) {
+		String str ;
+		Scanner sc=new Scanner(System.in);
+		str=sc.nextLine();
+		   System.out.println(reverse(str));
+		}
+		public static String reverse(String str) {
+		    int l = str.length();
+		    char[] rev = new char[l];
+		    int j = l-1;
+		    for (int i=0; i <= j; ) {
+		        if(!Character.isAlphabetic(str.charAt(i))) {
+		            rev[i] = str.charAt(i);
+		            i++;
+		        } else if (!Character.isAlphabetic(str.charAt(j))) {
+		            rev[j] = str.charAt(j);
+		            j--;
+		        } else {
+		            rev[j] = str.charAt(i);
+		            rev[i] = str.charAt(j);
+		            j--;
+		            i++;
+		        }
+		    }
+
+		    return new String(rev);
+		}
+}
