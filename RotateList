@@ -1,0 +1,84 @@
+import java.util.Scanner;
+import java.util.*;
+public class RotateList {
+	static Node head;
+	static class Node{
+		int data;
+		Node next;
+		Node(int d){
+			data =d;
+			next =null;
+		}
+	}
+	void rotate(int k) 
+    { 
+        if (k == 0) return;  
+        Node current  = head;  
+        int count = 1; 
+        while (count < k && current !=  null) 
+        { 
+            current = current.next; 
+            count++; 
+        } 
+        if (current == null) 
+            return;  
+        Node kthNode = current;  
+        while (current.next != null) 
+            current = current.next; 
+        current.next = head;  
+        head = kthNode.next;
+        kthNode.next = null; 
+  
+    } 
+	public static void insert(RotateList li,int data){
+		Node newNode=new Node(data);
+		int count=0;
+		newNode.next=null;
+		if(li.head==null){
+			li.head=newNode;
+		}
+		else{
+			Node temp=li.head;
+			while(temp!=null){
+				if(temp.data==data){
+					count++;
+					break;
+				}
+				temp=temp.next;
+			}
+			if(count==0){
+				Node last=li.head;
+				while(last.next!=null){
+					last=last.next;
+				}
+			last.next=newNode;
+			}
+		}
+	}
+	void printMyList(Node node) {
+		while(node!=null) {
+			System.out.print(node.data + " ");
+			node=node.next;
+		}
+		System.out.println(" ");
+	}
+	public static void main(String[] args) {
+		RotateList list=new RotateList();
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Size of LinkedList: ");
+		int n=sc.nextInt();
+		System.out.println("Enter Elements: ");
+		for(int i=0;i<n;i++) {
+			int a=sc.nextInt();
+			insert(list,a);
+		}
+		System.out.println("Normal List :");
+		list.printMyList(head);
+		System.out.println("Rotate By?");
+		int k=sc.nextInt();
+		list.rotate(k);
+		System.out.println(" ");
+		System.out.println("Rotated List :");
+		list.printMyList(head);
+	}
+}
