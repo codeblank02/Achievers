@@ -1,0 +1,43 @@
+import java.util.*;
+	class Node { 
+		int data; 
+		Node left, right; 
+		public Node(int item) { 
+			data=item; 
+			left=right=null; 
+		} 
+	} 
+	public class LCAofBT{ 
+		Node root; 
+		Node search(int n,int m) { 
+			return search(root, n, m); 
+		} 
+		Node search(Node node,int n,int m) { 
+			if (node==null) 
+				return null;  
+			if (node.data==n||node.data==m) 
+				return node; 
+			Node lca=search(node.left,n,m); 
+			Node rca=search(node.right,n,m); 
+			if (lca!=null && rca!=null) 
+				return node; 
+			if(lca!=null)
+				return lca;
+			else
+				return rca;
+		} 
+		public static void main(String args[]) { 
+			LCAofBT BT=new LCAofBT(); 
+			BT.root=new Node(1); 
+			BT.root.left=new Node(2); 
+			BT.root.right=new Node(3); 
+			BT.root.left.left=new Node(4); 
+			BT.root.left.right=new Node(5); 
+			BT.root.right.left=new Node(6); 
+			BT.root.right.right=new Node(7); 
+			System.out.println("LCA(4,5) = "+BT.search(4,5).data); 
+			System.out.println("LCA(4,6) = "+BT.search(4,6).data); 
+			System.out.println("LCA(3,4) = "+BT.search(3,4).data); 
+			System.out.println("LCA(2,4) = "+BT.search(2,4).data); 
+		} 
+	} 
