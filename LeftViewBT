@@ -1,0 +1,42 @@
+public class LeftViewBT {
+	static class Node
+	{
+		int data;
+		Node left,right;
+		Node(int data)
+		{
+			left=right=null;
+			this.data=data;
+		}
+	}
+	Node root;
+	static int x=0;
+	static void print(Node root,int a)
+	{
+		if(root==null)
+			return;
+		if(x<a)
+		{
+			System.out.print(root.data+" ");
+			x=a;
+		}
+		print(root.left,a+1);
+		print(root.right,a+1);
+	}
+	void display()
+	{
+		print(root,1);
+	}
+	public static void main(String args[]) { 
+		LeftViewBT BT=new LeftViewBT(); 
+		BT.root=new Node(1); 
+		BT.root.left=new Node(2); 
+		BT.root.right=new Node(3); 
+		BT.root.left.left=new Node(4); 
+		BT.root.left.right=new Node(5); 
+		BT.root.right.left=new Node(6); 
+		BT.root.right.right=new Node(7); 
+		BT.display();
+	}
+
+}
